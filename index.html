@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ShopIT - Your Digital Solution</title>
+
+  <!-- icons fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 420px;
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card-title {
+      text-align: center;
+      padding: 15px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .link {
+      display: flex;
+      align-items: center;
+      background: white;
+      border-radius: 30px;
+      padding: 12px 15px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-decoration: none;
+      color: black;
+      transition: 0.2s;
+    }
+
+    .link:hover {
+      transform: scale(1.02);
+    }
+
+    .icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: white;
+    }
+
+    .whatsapp { background: #25D366; }
+    .instagram { background: #E1306C; }
+    .tiktok { background: #000000; }
+    .youtube { background: #FF0000; }
+    .facebook { background: #1877F2; }
+
+    .text {
+      flex: 1;
+      font-size: 16px;
+    }
+
+    /* SERVICES */
+    .services {
+      padding: 15px;
+    }
+
+    .service-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+      background: #f9f9f9;
+      border-radius: 12px;
+      padding: 10px;
+    }
+
+    .service-icon {
+      width: 35px;
+      height: 35px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 12px;
+      color: white;
+      font-size: 16px;
+    }
+
+    .web { background: #4CAF50; }
+    .portfolio { background: #FF9800; }
+    .business { background: #2196F3; }
+    .social { background: #E91E63; }
+
+    .service-text {
+      font-size: 14px;
+      color: #333;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- logo -->
+    <div class="card">
+      <img src="images/image.png" alt="Banner">
+      <div class="card-title">ShopIT</div>
+    </div>
+
+    <!-- Services -->
+    <div class="card">
+      <div class="card-title">Our Services</div>
+
+      <div class="services">
+
+        <div class="service-item">
+          <div class="service-icon web">
+            <i class="fas fa-code"></i>
+          </div>
+          <div class="service-text">Website Development</div>
+        </div>
+
+        <div class="service-item">
+          <div class="service-icon portfolio">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="service-text">Personal Portfolio Design</div>
+        </div>
+
+        <div class="service-item">
+          <div class="service-icon business">
+            <i class="fas fa-briefcase"></i>
+          </div>
+          <div class="service-text">Business Portfolio Creation</div>
+        </div>
+
+        <div class="service-item">
+          <div class="service-icon social">
+            <i class="fas fa-hashtag"></i>
+          </div>
+          <div class="service-text">Social Media Management</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Links -->
+    <a href="https://wa.me/+27603797515" target="_blank" class="link">
+      <div class="icon whatsapp"><i class="fab fa-whatsapp"></i></div>
+      <div class="text">WhatsApp</div>
+    </a>
+
+    <a href="https://instagram.com/ShopIT" target="_blank" class="link">
+      <div class="icon instagram"><i class="fab fa-instagram"></i></div>
+      <div class="text">Instagram</div>
+    </a>
+
+    <a href="https://tiktok.com/ShopIT" target="_blank" class="link">
+      <div class="icon tiktok"><i class="fab fa-tiktok"></i></div>
+      <div class="text">TikTok</div>
+    </a>
+
+    <a href="https://youtube.com/@ShopIT" target="_blank" class="link">
+      <div class="icon youtube"><i class="fab fa-youtube"></i></div>
+      <div class="text">YouTube</div>
+    </a>
+
+    <a href="https://www.facebook.com/ShopIT" target="_blank" class="link">
+      <div class="icon facebook"><i class="fab fa-facebook-f"></i></div>
+      <div class="text">Facebook</div>
+    </a>
+
+  </div>
+</body>
+</html>
