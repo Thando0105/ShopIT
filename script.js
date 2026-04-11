@@ -68,6 +68,19 @@ function renderProducts(filter = 'all') {
     });
     setupReveal(); // Re-trigger reveal for new elements
 }
+// Add this inside your existing script.js or inside a DOMContentLoaded listener
+const cards = document.querySelectorAll('.service-card');
+
+cards.forEach(card => {
+    card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        card.style.setProperty('--x', `${x}px`);
+        card.style.setProperty('--y', `${y}px`);
+    });
+});
 
 function addToCart(id) {
     const item = products.find(p => p.id === id);
