@@ -1,26 +1,186 @@
-const projects = [
-    { id: 1, title: "E-commerce System", img: "http://127.0.0.1:5502/images/image.png", desc: "iStore Resellers Advanced retail platform." },
-    { id: 2, title: "Modern Portfolio", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600", desc: "Clean business presence." }
+// --- PRODUCT DATABASE (Update Daily Here) ---
+const products = [
+    {
+        id: 1,
+        name: "iProduct_Connect",
+        category: "E-commerce",
+        basePrice: 150, // in USD
+        img: "",
+        badge: "Best Seller",
+        demoLink: "#"
+    },
+    {
+        id: 2,
+        name: "Minimal Portfolio",
+        category: "Portfolio",
+        basePrice: 49,
+        img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600",
+        badge: "New",
+        demoLink: "#"
+    },
+    {
+        id: 3,
+        name: "Corporate Nexus",
+        category: "Business",
+        basePrice: 89,
+        img: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=600",
+        badge: "Trending",
+        demoLink: "#"
+    }
 ];
 
-function render() {
-    const grid = document.getElementById('portfolio-grid');
-    if(!grid) return;
-    grid.innerHTML = projects.map(p => `
-        <div class="project-card">
-            <img src="${p.img}" style="width:100%; height:200px; object-fit:cover;">
-            <div style="padding:20px">
-                <h3>${p.title}</h3>
-                <p style="color:#94a3b8; margin:10px 0">${p.desc}</p>
-                <button class="btn btn-primary full-width" onclick="alert('Order like this on WhatsApp!')">View Details</button>
-            </div>
-        </div>
-    `).join('');
+// --- APP STATE ---
+const rates = { USD: 1, ZAR: 19.10, GBP: 0.78, EUR: 0.92 };
+let currentCurrency = 'USD';
+let cart = JSON.parse(localStorage.getItem('shopit_cart')) || [];
+
+// --- CORE FUNCTIONS ---
+function init() {
+    renderProducts();
+    updateCartUI();
+    setupReveal();
 }
 
-window.onscroll = () => {
-    document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 50);
-};
+function renderProducts(filter = 'all') {
+    const grid = document.getElementById('product-grid');
+    grid.innerHTML = '';
 
-document.addEventListener('DOMContentLoaded', render);
+    const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
 
+    filtered.forEach(p => {
+        const localPrice = (p.basePrice * rates[currentCurrency]).toLocaleString(undefined, { minimumFractionDigits: 2 });
+        const symbol = getSymbol(currentCurrency);
+
+        grid.innerHTML += `
+            <div class="product-card" data-reveal>
+                ${p.badge ? `<span class="badge">${p.badge}</span>` : ''}
+                <img src="${p.img}" alt="${p.name}" class="product-img">
+                <div class="product-info">
+                    <h3>${p.name}</h3>
+                    <span class="price-tag">${symbol}${localPrice}</span>
+                    <div class="p-actions">
+                        <button class="btn btn-primary full-width" onclick="addToCart(${p.id})">Add to Cart</button>
+                        <a href="${p.demoLink}" target="_blank" class="btn btn-outline" title="Live Demo"><i class="fas fa-external-link"></i></a>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+    setupReveal(); // Re-trigger reveal for new elements
+}
+
+function addToCart(id) {
+    const item = products.find(p => p.id === id);
+    const existing = cart.find(c => c.id === id);
+    
+    if (existing) {
+        existing.qty++;
+    } else {
+        cart.push({ ...item, qty: 1 });
+    }
+    
+    saveAndRefresh();
+    toggleCart(true);
+}
+
+function updateCartUI() {
+    const container = document.getElementById('cart-items-container');
+    const count = document.getElementById('cart-count');
+    const totalDisplay = document.getElementById('cart-total-display');
+    
+    container.innerHTML = '';
+    let total = 0;
+    let itemsCount = 0;
+
+    cart.forEach(item => {
+        const itemTotal = item.basePrice * item.qty;
+        total += itemTotal;
+        itemsCount += item.qty;
+
+        container.innerHTML += `
+            <div class="cart-item">
+                <img src="${item.img}">
+                <div style="flex:1">
+                    <h4>${item.name}</h4>
+                    <p>${item.qty} x ${getSymbol(currentCurrency)}${(item.basePrice * rates[currentCurrency]).toFixed(2)}</p>
+                </div>
+                <button onclick="removeFromCart(${item.id})" style="background:none; border:none; color:#f87171; cursor:pointer"><i class="fas fa-trash"></i></button>
+            </div>
+        `;
+    });
+
+    count.innerText = itemsCount;
+    totalDisplay.innerText = `${getSymbol(currentCurrency)}${(total * rates[currentCurrency]).toLocaleString()}`;
+}
+
+function removeFromCart(id) {
+    cart = cart.filter(c => c.id !== id);
+    saveAndRefresh();
+}
+
+function saveAndRefresh() {
+    localStorage.setItem('shopit_cart', JSON.stringify(cart));
+    updateCartUI();
+}
+
+function toggleCart(open = null) {
+    const sidebar = document.getElementById('cart-sidebar');
+    const overlay = document.getElementById('overlay');
+    const isOpen = open !== null ? !open : sidebar.classList.contains('active');
+    
+    if (isOpen) {
+        sidebar.classList.remove('active');
+        overlay.style.display = 'none';
+    } else {
+        sidebar.classList.add('active');
+        overlay.style.display = 'block';
+    }
+}
+
+function checkoutWhatsApp() {
+    if (cart.length === 0) return alert("Cart is empty!");
+
+    let message = "Hi ShopIT Services! I'd like to purchase:\n\n";
+    let total = 0;
+
+    cart.forEach(item => {
+        message += `- ${item.name} x${item.qty} (${getSymbol(currentCurrency)}${(item.basePrice * rates[currentCurrency]).toFixed(2)})\n`;
+        total += (item.basePrice * item.qty);
+    });
+
+    message += `\nTotal: ${getSymbol(currentCurrency)}${(total * rates[currentCurrency]).toLocaleString()}\n`;
+    message += "Please send payment details.";
+
+    window.open(`https://wa.me/YOURNUMBER?text=${encodeURIComponent(message)}`, '_blank');
+}
+
+// --- UTILS ---
+function getSymbol(cur) {
+    return { USD: '$', ZAR: 'R', GBP: '£', EUR: '€' }[cur];
+}
+
+function setupReveal() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('active');
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
+}
+
+// --- EVENT LISTENERS ---
+document.getElementById('currency-selector').addEventListener('change', (e) => {
+    currentCurrency = e.target.value;
+    renderProducts();
+    updateCartUI();
+});
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.onclick = () => {
+        document.querySelector('.filter-btn.active').classList.remove('active');
+        btn.classList.add('active');
+        renderProducts(btn.dataset.filter);
+    };
+});
+
+init();
