@@ -5,7 +5,7 @@ const products = [
         name: "iProduct_Connect",
         category: "E-commerce",
         basePrice: 150, // in USD
-        img: "",
+        img: "http://127.0.0.1:5502/images/image.png",
         badge: "Best Seller",
         demoLink: "#"
     },
@@ -14,7 +14,7 @@ const products = [
         name: "Minimal Portfolio",
         category: "Portfolio",
         basePrice: 49,
-        img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600",
+        img: "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&q=80&w=800",
         badge: "New",
         demoLink: "#"
     },
@@ -23,7 +23,7 @@ const products = [
         name: "Corporate Nexus",
         category: "Business",
         basePrice: 89,
-        img: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=600",
+        img: "http://127.0.0.1:5501/index.html#",
         badge: "Trending",
         demoLink: "#"
     }
