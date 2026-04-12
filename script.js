@@ -3,29 +3,31 @@ const products = [
     {
         id: 1,
         name: "iProduct_Connect",
-        category: "E-commerce",
+        category: "E-commerce store for Iphone Resselling",
         basePrice: 150, // in USD
         img: "http://127.0.0.1:5502/images/image.png",
-        badge: "Best Seller",
-        demoLink: "#"
+        badge: "Trending",
+        demoLink: "iproductconnect.netlify.app"
+
+
     },
     {
         id: 2,
-        name: "Minimal Portfolio",
-        category: "Portfolio",
-        basePrice: 49,
+        name: "Hair Salon Website",
+        category: "Portfolio /Website for a beauty salon",
+        basePrice: 200,
         img: "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&q=80&w=800",
         badge: "New",
-        demoLink: "#"
+        demoLink: "https://glowbeautyhaiir.netlify.app/"
     },
     {
         id: 3,
-        name: "Corporate Nexus",
-        category: "Business",
-        basePrice: 89,
-        img: "http://127.0.0.1:5501/index.html#",
-        badge: "Trending",
-        demoLink: "#"
+        name: "Amiradahab Foundation",
+        category: "Business, Wealth, Investment, Jewelery",
+        basePrice: 1000,
+        img: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500",
+        badge: "Best Seller",
+        demoLink: "https://amiradahabfoundation.netlify.app/"
     }
 ];
 
