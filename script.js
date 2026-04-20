@@ -4,7 +4,7 @@ const products = [
         id: 1,
         name: "iProduct_Connect",
         category: "E-commerce store for Iphone Resselling",
-        basePrice: 150, // in USD
+        basePrice: 200, // in USD
         img: "http://127.0.0.1:5502/images/image.png",
         badge: "Trending",
         demoLink: "iproductconnect.netlify.app"
@@ -15,7 +15,7 @@ const products = [
         id: 2,
         name: "Hair Salon Website",
         category: "Portfolio /Website for a beauty salon",
-        basePrice: 200,
+        basePrice: 250,
         img: "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&q=80&w=800",
         badge: "New",
         demoLink: "https://glowbeautyhaiir.netlify.app/"
@@ -24,7 +24,7 @@ const products = [
         id: 3,
         name: "Amiradahab Foundation",
         category: "Business, Wealth, Investment, Jewelery",
-        basePrice: 1000,
+        basePrice: 600,
         img: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500",
         badge: "Best Seller",
         demoLink: "https://amiradahabfoundation.netlify.app/"
