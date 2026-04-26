@@ -2,12 +2,12 @@
 const products = [
     {
         id: 1,
-        name: "iProduct_Connect",
-        category: "E-commerce store for Iphone Resselling",
-        basePrice: 200, // in USD
-        img: "http://127.0.0.1:5502/images/image.png",
+        name: "Guess House Website", 
+        category: "Portfolio /Website for a guest house",
+        basePrice: 100, // in USD
+        img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=800",
         badge: "Trending",
-        demoLink: "iproductconnect.netlify.app"
+        demoLink: "https://rondebosch-cottage-a-biwf.bolt.host/"
 
 
     },
@@ -15,16 +15,16 @@ const products = [
         id: 2,
         name: "Hair Salon Website",
         category: "Portfolio /Website for a beauty salon",
-        basePrice: 250,
+        basePrice: 100,
         img: "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&q=80&w=800",
         badge: "New",
         demoLink: "https://glowbeautyhaiir.netlify.app/"
     },
     {
         id: 3,
-        name: "Amiradahab Foundation",
+        name: "Gold Investment Platform",
         category: "Business, Wealth, Investment, Jewelery",
-        basePrice: 600,
+        basePrice: 200,
         img: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500",
         badge: "Best Seller",
         demoLink: "https://amiradahabfoundation.netlify.app/"
